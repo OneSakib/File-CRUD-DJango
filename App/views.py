@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.views.generic import FormView, RedirectView
+from django.views.generic import FormView, RedirectView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
@@ -57,3 +57,17 @@ class SignUpForm(FormView):
             form.save()
             return HttpResponseRedirect(reverse_lazy('app:login'))
         return HttpResponseRedirect(reverse_lazy('app:signup'))
+
+
+class UpdateData(UpdateView):
+    template_name = 'app/update.html'
+    form_class = DataForm
+    success_url = reverse_lazy('app:dashboard')
+    model = Data
+
+
+class DeleteData(DeleteView):
+    template_name = 'app/delete.html'
+    success_url = reverse_lazy('app:dashboard')
+    model = Data
+

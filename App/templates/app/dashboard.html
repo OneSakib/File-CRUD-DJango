@@ -19,6 +19,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">File</th>
                     <th scope="col">Desc</th>
+                    <th scope="col" colspan="2">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,8 @@
                             <td>{{ d.id }}</td>
                             <td><a href="media/{{ d.file }}" class="text-decoration-none">File</a></td>
                             <td>{{ d.desc }}</td>
+                        <td><a  class="btn btn-success" href="{% url 'app:update' d.id %}">Edit </a></td>
+                        <td><a  class="btn btn-danger" href="{% url 'app:delete' d.id %}">Delete </a></td>
                         </tr>
                     {% endfor %}
                 {% else %}

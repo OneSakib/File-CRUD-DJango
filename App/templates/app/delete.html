@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="text-center bg-secondary text-white">Delete Data......</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure Delete the Data "{{ object }}" from the Database ............</p>
+            {{ form }}
+            <input type="submit" value="Confirm" class="btn btn-danger">
+        </form>
+    </div>
+{% endblock %}

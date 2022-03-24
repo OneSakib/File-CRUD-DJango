@@ -10,6 +10,8 @@ urlpatterns = [
     path('login/', views.LoginForm.as_view(), name='login'),
     path('logout/', views.Logout.as_view(), name='logout'),
     path('signup/', views.SignUpForm.as_view(), name='signup'),
+    path('update/<int:pk>', views.UpdateData.as_view(), name='update'),
+    path('delete/<int:pk>', views.DeleteData.as_view(), name='delete'),
 
 ]
 if settings.DEBUG:

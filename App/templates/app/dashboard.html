@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container mt-3 row">
+        <h1 class="text-primary">Welcome <b class="text-danger">{{ request.user|title }}</b></h1>
+        <div class="col-4">
+            <h1 class="text-white bg-secondary text-center p-1">Add New Data</h1>
+            <form class="form-control" method="post" enctype="multipart/form-data">
+                {{ form|crispy }}
+                {% csrf_token %}
+                <input type="submit" value="Add File" class="btn btn-success">
+            </form>
+        </div>
+        <div class="col-8">
+            <h1 class="text-white bg-secondary text-center p-1">Data</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">File</th>
+                    <th scope="col">Desc</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if data %}
+                    {% for d in data %}
+                        <tr>
+                            <td>{{ d.id }}</td>
+                            <td><a href="media/{{ d.file }}" class="text-decoration-none">File</a></td>
+                            <td>{{ d.desc }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <td colspan="3">No Data is Found</td>
+                {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
